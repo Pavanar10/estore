@@ -1,0 +1,12 @@
+<div  class="main-product-container">
+    <div *ngFor="let imgs of productService.products$|async" class="mx-5 p-3 product-card">
+        <div class="product-image-container"><img [src]="'../../../../assets/images/' + imgs.product_img" alt="">
+       
+        </div>
+        <div class="product-info">
+         <h5>{{imgs.product_name}}</h5>
+        <p class="pclass">{{imgs.price|currency}}</p>
+        <p><app-rattings [score]='imgs.ratings'></app-rattings></p>
+    </div>
+    </div>
+</div>

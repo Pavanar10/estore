@@ -1,0 +1,27 @@
+<div class="header bg-dark">
+    <div class="row">
+        <div class="brand my-1">
+            <h1>estore</h1>
+        </div>
+        <div class='p-0 my-4 w-50 h-25 bg-white'>
+            <select class="dropdown p-0 m-0">
+                <option *ngFor="let category of categoryStore.topLevelCategories$|async">{{category.category}}</option>
+            </select>
+            <input class="form-control search-box" placeholder="Search....">
+            <button class="search-button"><fa-icon [icon]="faSearch"></fa-icon></button>
+        </div>
+        <div class="login-container p-0">
+            <fa-icon class="user-icon" [icon]="faUserCircle"></fa-icon>
+            <h5><a href="#">Sign In</a></h5>/<h5><a href="#">Register</a></h5>
+        </div>
+        <div class="cart-wishlist">
+            <ul class="p-0">
+                
+                <li class="list-item">
+                    <fa-icon [icon]="faShoppingCart"></fa-icon>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
