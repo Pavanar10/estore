@@ -1,14 +1,5 @@
-<app-header></app-header>
-<app-catnavigation></app-catnavigation>
+<app-header (searchClicked)="onSearchClicked($event)"></app-header>
+<app-catnavigation (categoryClick)="onCategoryClicked($event)"></app-catnavigation>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-4" >
-                <app-sidenavigation></app-sidenavigation>
-        </div>
-        <div class="col-lg-10 col-md-9 col-sm-8" >
-            <app-products></app-products>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

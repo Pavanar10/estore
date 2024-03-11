@@ -1,0 +1,20 @@
+<div class="row my-5 product-details-container">
+    <ng-container *ngIf="product">
+    <div class="col-5 product-image-container">
+    
+        <img [src]="'../../../../assets/images/' + product.product_img"/>
+   
+    </div>
+    <div class="col-7 product-information-container">
+        <span id="product-name">{{product.product_name}}</span>
+        <app-rattings [score]="4"></app-rattings>
+        <hr>
+        <div class="product-price">
+            Price: <span class="price">{{product.price}}</span>
+            <div>Inclusive of all taxes.</div>
+        </div>
+        <div class="my-3 product-description">
+            {{product.product_description}}
+        </div>
+    </div></ng-container>
+</div>

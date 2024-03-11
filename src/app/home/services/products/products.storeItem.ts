@@ -11,14 +11,17 @@ export class ProductStoreItem extends storeItem<Product[]>{
         super([])
     }
 
-    async loadProducts(){
-        this.productService.getProductsList().subscribe(products=>{
+    async loadProducts(query?:string){
+        this.productService.getProductsList(query).subscribe(products=>{
             this.setValue(products)
         })
     }
 
     get products$():Observable<Product[]>{
         return this.value$
+    }
+    get products():Product[]{
+        return this.value
     }
 
 
