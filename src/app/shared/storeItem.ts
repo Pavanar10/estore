@@ -1,7 +1,7 @@
 import { state } from "@angular/animations";
 import { BehaviorSubject,Observable } from "rxjs";
 
-export class storeItem<T>{
+export class StoreItem<T>{
     private _state$:BehaviorSubject<T>;
 
     protected constructor(initialState:T){

@@ -1,0 +1,64 @@
+<ng-container *ngIf="!cartStore.cart.products.length">
+    <div class="p-4 ec-main-div">
+        <span class="my-5 ec-text">The Cart Is Empty</span>
+    </div>
+    <hr>
+    <div class="btn btn-warning my-3 " (click)="navigateToHome()">
+        <span style="font-weight: 500;">Continue Shopping</span>
+    </div>
+</ng-container>
+<ng-container *ngIf="cartStore.cart$|async as cart">
+    <div class="row my-5 fc-main-div">
+        <div class="col-8 p-4">
+            <div class="row cart-item-card" *ngFor="let cartItem of cart.products">
+                <div class="col-4">
+                    <img [src]="'../../../../assets/images/' + cartItem.product.product_img" alt="">
+                </div>
+                <div class="col-8">
+                    <div class="p-3 cart-item-details">
+                        <span class="cart-item-name">
+                            {{cartItem.product.product_name}}
+                        </span>
+                        <div class="cart-item-price">
+                         <span>{{cartItem.product.price|currency}}</span>
+                        </div>
+                        <app-rattings [score]="cartItem.product.ratings"></app-rattings>
+                        <hr>
+                        <div class="cart-edit-container">
+                            <div class="tbn-group mx-3" (click)="updateQuantity($event,cartItem)">   
+                                    <div class="btn btn-outline-dark">
+                                        <span> - </span>
+                                    </div>     
+                                    <div class="btn">{{cartItem.quantity}}</div>
+                                    <div class="btn btn-outline-dark">
+                                        <span> + </span>
+                                    </div>
+                        </div>
+                        <div class="btn btn-outline-danger mx-4" (click)="removeItem(cartItem)">
+                            <span> <fa-icon [icon]="faTrash">    </fa-icon> Remove Item</span>
+                        </div>
+                    </div> 
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-4 px-4 my-4 cart-summary" *ngIf="cartStore.cart.products.length">
+            <h2 class="mb-5 mt-3">Summary</h2>
+        
+                <div>
+                    <span>{{cart.totalAmount|currency}}</span>
+                    <span>Shipping Changes:Free</span>
+                    <hr>
+                    <span class="summary-total">
+                        Total:{{cart.totalAmount|currency}}
+                    </span>
+                    <hr>
+                </div>
+                <div class="btn btn-outline-dark w-100 mb-4 mt-1">
+                    Checkout
+                </div>
+        </div>
+    </div>
+
+</ng-container>

@@ -1,16 +1,26 @@
 <div  class="main-product-container">
-    <div *ngFor="let imgs of productService.products$|async" class="mx-5 p-3 product-card">
+    <div *ngFor="let product of productService.products$|async" class="mx-5 p-3 product-card">
         <div class="product-image-container">
-            <a routerLink="../product/{{imgs.id}}">
-            <img [src]="'../../../../assets/images/' + imgs.product_img" alt="">
+            <a routerLink="../product/{{product.id}}">
+            <img [src]="'../../../../assets/images/' + product.product_img" alt="">
         </a>
         </div>
         <div class="product-info">
          <h5>
-            <a routerLink="../product/{{imgs.id}}">{{imgs.product_name}}
+            <a routerLink="../product/{{product.id}}">{{product.product_name}}
             </a></h5>
-        <p class="pclass">{{imgs.price|currency}}</p>
-        <p><app-rattings [score]='imgs.ratings'></app-rattings></p>
+        <p class="pclass">{{product.price|currency}}</p>
+        <p><app-rattings [score]='product.ratings'></app-rattings></p>
+        <div class="my-3"(click)="addToCart(product)">
+            <div class="cart-button">
+                <div class="cart-icon-container">
+                    <fa-icon [icon]="faShoppingCart"></fa-icon>
+                </div>
+                <div class="cart-text-container mx-3">
+                    <p>Add To Cart</p>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     <div *ngIf="!productService.products.length">

@@ -4,6 +4,7 @@ import { CategoriesStoreItem } from '../../services/category/categories.storeIte
 import { SearchKeyword } from '../../types/searchKeywork.type';
 import { NavigationEnd,Router  } from '@angular/router';
 import { filter } from 'rxjs';
+import { CartStoreItem } from '../../services/cart/cart.storeItem';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,12 +19,13 @@ faShoppingCart =faShoppingCart;
 searchClicked:EventEmitter<SearchKeyword>=new EventEmitter<SearchKeyword>();
 
 displaySearch:boolean=true;
-constructor(public categoryStore:CategoriesStoreItem,private router:Router){
+constructor(public categoryStore:CategoriesStoreItem,private router:Router,public cartStore:CartStoreItem){
   router.events
   .pipe(filter(event=>event instanceof NavigationEnd))
   .subscribe((event)=>{
     this.displaySearch = (event as NavigationEnd).url==='/home/products'?true:false
   })
+
 
 }
 
@@ -35,4 +37,7 @@ onClickSearch(keyword:string,categoryId:string){
   })
 }
 
+navigateToCart():void{
+  this.router.navigate(['home/cart']);
+}
 }

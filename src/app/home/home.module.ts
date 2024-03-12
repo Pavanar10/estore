@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { HomeRoutingModule } from './home-routing.module';
 import { ProductsGalleryComponent } from './components/products-gallery/products-gallery.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CartStoreItem } from './services/cart/cart.storeItem';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductsComponent,
     ProductsGalleryComponent,
     ProductDetailsComponent,
+    CartComponent,
 
   ],
   imports: [
@@ -35,6 +38,6 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     RouterModule,HomeRoutingModule
 
   ],
-  providers:[CategoryService,CategoriesStoreItem,ProductStoreItem,ProductsService]
+  providers:[CategoryService,CategoriesStoreItem,ProductStoreItem,ProductsService,CartStoreItem]
 })
 export class HomeModule { }

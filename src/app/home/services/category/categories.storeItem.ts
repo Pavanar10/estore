@@ -1,10 +1,10 @@
-import { storeItem } from "src/app/shared/storeItem";
+import { StoreItem } from "src/app/shared/storeItem";
 import { Category } from "../../types/category-type";
 import { CategoryService } from "./category.service";
 import { Observable ,map} from "rxjs";
 import { Injectable } from "@angular/core";
 @Injectable()
-export class CategoriesStoreItem extends storeItem<Category[]>{
+export class CategoriesStoreItem extends StoreItem<Category[]>{
     constructor(private categoryService:CategoryService){
         super([])
     }
