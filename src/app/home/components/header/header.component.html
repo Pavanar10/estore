@@ -12,9 +12,20 @@
             <button (click)="onClickSearch(keyword.value,categoryOptions.value)" class="search-button"><fa-icon [icon]="faSearch"></fa-icon></button>
         </ng-container>
         </div>
-        <div class="login-container p-0">
+        <div class="login-container p-0" *ngIf="!isAuthentivated">
             <fa-icon class="user-icon" [icon]="faUserCircle"></fa-icon>
-            <h5><a href="#">Sign In</a></h5>/<h5><a href="#">Register</a></h5>
+            <h5><a routerLink="login">Sign In/Join</a></h5>
+        </div>
+        <div class="login-container p-0" *ngIf="isAuthentivated">
+            <div class="dropdown user-dropdown">
+                <button class="btn btn-secondary dropdown-toggle user-dropdown-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <fa-icon class="user-icon" [icon]="faUserCircle"></fa-icon>
+            Hi {{userName}}
+        </button>
+        <ul class="dropdown-menu">
+            <li ><a class="dropdown-item" (click)="logout()">Logout</a></li>
+        </ul>
+            </div>
         </div>
         <div class="cart-wishlist p-0 list-item">
            <button type="button" class="btn btn-dark position-relative" (click)="navigateToCart()">

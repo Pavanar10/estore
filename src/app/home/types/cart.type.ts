@@ -11,3 +11,11 @@ export interface Cart{
     totalAmount:number,
     totalProducts:number
 }
+
+export interface DeliveryAddress{
+    userName:string,
+    address:string,
+    state:string,
+    pin:string,
+    city:string
+}

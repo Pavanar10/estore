@@ -17,6 +17,7 @@ subscriptions:Subscription=new Subscription();
 constructor(categoryStore:CategoriesStoreItem){
   this.subscriptions.add(categoryStore.categories$.subscribe(categories=>{
     this.categories=categories
+    console.log(categories)
   }));
 }
 getCategoryById(id?:number):Category[]{

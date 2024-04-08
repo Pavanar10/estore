@@ -1,11 +1,15 @@
 <ng-container *ngIf="!cartStore.cart.products.length">
     <div class="p-4 ec-main-div">
         <span class="my-5 ec-text">The Cart Is Empty</span>
-    </div>
+   
     <hr>
     <div class="btn btn-warning my-3 " (click)="navigateToHome()">
         <span style="font-weight: 500;">Continue Shopping</span>
+    </div> 
+    <div class="alert" [ngClass]="alertType ===0?'alert-success':'alert-danger'" *ngIf="alterMessage !==''">
+        {{alterMessage}}
     </div>
+</div>
 </ng-container>
 <ng-container *ngIf="cartStore.cart$|async as cart">
     <div class="row my-5 fc-main-div">
@@ -43,22 +47,70 @@
                 <hr>
             </div>
         </div>
-        <div class="col-4 px-4 my-4 cart-summary" *ngIf="cartStore.cart.products.length">
-            <h2 class="mb-5 mt-3">Summary</h2>
-        
-                <div>
-                    <span>{{cart.totalAmount|currency}}</span>
-                    <span>Shipping Changes:Free</span>
-                    <hr>
-                    <span class="summary-total">
-                        Total:{{cart.totalAmount|currency}}
-                    </span>
-                    <hr>
+        <ng-container *ngIf="cartStore.cart.products.length">
+            <div class="col-4">
+                <div class="alert" [ngClass]="alertType ===0?'alert-success':'alert-danger'" *ngIf="alterMessage !==''">
+                    {{alterMessage}}
                 </div>
-                <div class="btn btn-outline-dark w-100 mb-4 mt-1">
-                    Checkout
+            <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+             <div class="row">
+                <div class="px-4 py-1 my-3 cart-summary">
+                    <h2 class="mb-5 mt-3">Delivery Address</h2>
+                    <div class="form-group row field-margin">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="name" id="name" formControlName="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row field-margin">
+                        <label for="address" class="col-sm-2 col-form-label">address</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="address" id="address" formControlName="address" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row field-margin">
+                        <label for="city" class="col-sm-2 col-form-label">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="city" id="city" formControlName="city" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row field-margin">
+                        <label for="state" class="col-sm-2 col-form-label">state</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="state" id="state" formControlName="state" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row field-margin">
+                        <label for="pin" class="col-sm-2 col-form-label">pin</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="pin" id="pin" formControlName="pin" class="form-control">
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="px-4 my-3 cart-summary" >
+                    <h2 class="mb-5 mt-3">Summary</h2>
+                
+                        <div>
+                            <span>{{cart.totalAmount|currency}}</span>
+                            <span>Shipping Changes:Free</span>
+                            <hr>
+                            <span class="summary-total">
+                                Total:{{cart.totalAmount|currency}}
+                            </span>
+                            <hr>
+                        </div>
+                 <!--        <div class="btn btn-outline-dark w-100 mb-4 mt-1">
+                            Checkout
+                        </div> -->
+                        <button type="submit" class="btn submit-button" [disabled]="!orderForm.valid || disableCheckout">Checkout</button>
+                </div>
+            </div>
+            </form>
         </div>
+    </ng-container>
+ 
     </div>
 
 </ng-container>
