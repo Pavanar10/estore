@@ -7,6 +7,7 @@ import { filter } from 'rxjs';
 import { CartStoreItem } from '../../services/cart/cart.storeItem';
 import { UserService } from '../../services/users/user-service.service';
 import { Subscription } from 'rxjs';
+import { OrderService } from '../../services/order/order.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -24,7 +25,9 @@ userName:string='';
 searchClicked:EventEmitter<SearchKeyword>=new EventEmitter<SearchKeyword>();
 
 displaySearch:boolean=true;
-constructor(public categoryStore:CategoriesStoreItem,private router:Router,public cartStore:CartStoreItem,private userService:UserService){
+constructor(public categoryStore:CategoriesStoreItem,private router:Router,public cartStore:CartStoreItem,private userService:UserService
+  ,private orserService:OrderService
+){
 
   router.events
   .pipe(filter(event=>event instanceof NavigationEnd))
@@ -54,7 +57,11 @@ navigateToCart():void{
   this.router.navigate(['home/cart']);
 }
 logout():void{
-  this.userService.logout()
+  this.userService.logout();
+  this.router.navigate(['home/products']);
+}
+pastOrder():void{
+this.router.navigate(['home/pastorders']);
 }
 ngOnDestroy(): void {
     this.subscription.unsubscribe()
